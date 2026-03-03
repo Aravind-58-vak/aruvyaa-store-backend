@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const Product = require("./models/Product");
+const Product = require("./models/ProductTemp");
 
 const products = [
   { name: "Milk", category: "dairy", price: 50, stock: 20 },
