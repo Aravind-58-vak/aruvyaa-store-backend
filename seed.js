@@ -1,7 +1,6 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
-const Product = require("./models/product");
-
-mongoose.connect("mongodb://127.0.0.1:27017/aruvyaa");
+const Product = require("./models/Product");
 
 const products = [
   { name: "Milk", category: "dairy", price: 50, stock: 20 },
@@ -24,10 +23,19 @@ const products = [
 ];
 
 async function seedData() {
-  await Product.deleteMany({});
-  await Product.insertMany(products);
-  console.log("Database Seeded Successfully");
-  process.exit();
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected to Atlas ✅");
+
+    await Product.deleteMany({});
+    await Product.insertMany(products);
+
+    console.log("Atlas Database Seeded Successfully 🚀");
+    process.exit();
+  } catch (error) {
+    console.error("Error:", error);
+    process.exit(1);
+  }
 }
 
 seedData();

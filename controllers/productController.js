@@ -1,4 +1,4 @@
-const Product = require("../models/product");
+const Product = require("../models/Product");
 
 // Add Product (Store Owner Only)
 exports.addProduct = async (req, res) => {
